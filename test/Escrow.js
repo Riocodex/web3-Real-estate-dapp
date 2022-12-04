@@ -10,7 +10,7 @@ describe('Escrow', () => {
     let realEstate
     it('saves the addresses', async() =>{
         
-        [buyer, seller] = await ethers.getSigners()
+        [buyer, seller, inspector, lender] = await ethers.getSigners()
        
         //deploy Real Estate
         const RealEstate = await ethers.getContractFactory('RealEstate');
@@ -19,6 +19,14 @@ describe('Escrow', () => {
         //Mint
         let transaction = await realEstate.connect(seller).mint("https://ipfs.io/ipfs/QmTudSYeM7mz3PkYEWXWqPjomRPHogcMFSq7XAvsvsgAPS")
         await transaction.wait()
+
+        const Escrow = await ethers.getContractFactory("Escrow")
+        escrow = await Escrow.deploy(
+            realEstate.address,
+            seller.address,
+            inspector.address,
+            lender.address
+        )
         
     })
 })
