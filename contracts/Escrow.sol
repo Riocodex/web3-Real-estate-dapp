@@ -30,11 +30,11 @@ contract Escrow {
      /**
      * @dev this function transfers the nft the seller minted in the real estate contract and sends
      * sends it to this contract 
-     * @dev this function is gotten from erc20
+     * @dev this function is gotten from erc721 with the interface above
      * @param _nftID is the id of the nft we want to collect which is the same one he minted in the 
      * real estate contract
      */
     function list(uint256 _nftID) public {
-        IERC20(nftAddress).transferFrom(msg.sender, address(this), _nftID);
+        IERC721(nftAddress).transferFrom(msg.sender, address(this), _nftID);
     }
 }
