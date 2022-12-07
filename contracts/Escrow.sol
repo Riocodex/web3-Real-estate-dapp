@@ -106,7 +106,7 @@ contract Escrow {
       * Transfer NFTS to buyer
       * Transfer funds to seller
       */
-     function finalizeSale(uint256 _nftID)public {
+     function finalizeSale(uint256 _nftID)public{
         require(inspectionPassed[_nftID]);
         require(approval[_nftID][buyer[_nftID]]);
         require(approval[_nftID][seller]);
