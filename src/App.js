@@ -21,7 +21,8 @@ function App() {
       const provider = new ethers.providers.Web3Provider(window.ethereum)
       console.log(provider)
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts'})
-      console.log(accounts)
+      setAccount(accounts[0])
+      console.log(accounts[0])
     }
 
     useEffect(() => {
