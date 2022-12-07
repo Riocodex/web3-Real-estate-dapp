@@ -90,7 +90,7 @@ contract Escrow {
 
      //Approve sale
      function approveSale(uint256 _nftID)public{
-        approval[_nftID][msg.sender] = true;
+        approval[_nftID][msg.sender] = true; 
      }
 
      receive() external payable {}
