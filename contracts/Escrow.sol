@@ -28,11 +28,18 @@ contract Escrow {
         _;
     }
 
+    modifier onlyInspector() {
+        require(msg.sender == inspector, "only inspector can call this method"){
+            _;
+        }
+    }
+
     //------MAPPINGS---------------
     mapping(uint256 => bool)public isListed;
     mapping(uint256 => uint256)public purchasePrice;
     mapping(uint256 => uint256)public escrowAmount;
     mapping(uint256 => address)public buyer;
+    mapping(uint256 => bool) public inspectionPassed;
 
     constructor(
         address _nftAddress, 
@@ -66,6 +73,13 @@ contract Escrow {
         purchasePrice[_nftID] = _purchasePrice;
         escrowAmount[_nftID] = _escrowAmount;
         buyer[_nftID] = _buyer;
+    }
+
+    //Update Inspection Status (only inspector)
+    function updateInspectonStatus(uint256 _nftID, bool _passed)
+    public
+    {
+        inspectionPassed[_nftId] = _passed;
     }
 
      //Put under contract (only buyer - payable escrow)
