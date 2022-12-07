@@ -29,9 +29,9 @@ contract Escrow {
     }
 
     modifier onlyInspector() {
-        require(msg.sender == inspector, "only inspector can call this method"){
+        require(msg.sender == inspector, "only inspector can call this method");
             _;
-        }
+        
     }
 
     //------MAPPINGS---------------
@@ -76,10 +76,10 @@ contract Escrow {
     }
 
     //Update Inspection Status (only inspector)
-    function updateInspectonStatus(uint256 _nftID, bool _passed)
+    function updateInspectionStatus(uint256 _nftID, bool _passed)
     public
     {
-        inspectionPassed[_nftId] = _passed;
+        inspectionPassed[_nftID] = _passed;
     }
 
      //Put under contract (only buyer - payable escrow)
