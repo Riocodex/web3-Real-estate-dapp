@@ -93,11 +93,7 @@ contract Escrow {
         approval[_nftID][msg.sender] = true; 
      }
 
-     receive() external payable {}
-     function getBalance() public view returns(uint256){
-        return address(this).balance;
-     }
-
+     
      /**
       * Finalize Sale..We want this function to:
       * Require inspection status(add more items here, like appraisal)
@@ -126,5 +122,24 @@ contract Escrow {
 
      }
 
+     /**
+      * Cancel sale(handle earnest deposit)
+      * if the sale cancels this function willl:
+      * refund to buyer
+      * otherwise send to seller
+      */
+     function cancelSale(uint256 _nftID) public{
+        if(inspectionPassed[_nftID] == false){
+            payable(buyer[_nftID].transfer(address(this).balance));
+        }else{
+            payable(seller).transfer(address(this).balance);
+        }
+     }
+
+     receive() external payable {}
      
+     function getBalance() public view returns(uint256){
+        return address(this).balance;
+     }
+
 }
