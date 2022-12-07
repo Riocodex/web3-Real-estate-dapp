@@ -98,4 +98,20 @@ contract Escrow {
         return address(this).balance;
      }
 
+     /**
+      * Finalize Sale..We want this function to:
+      * Require inspection status(add more items here, like appraisal)
+      * Require sale to be authorized
+      * Require funds to be correct amount
+      * Transfer NFTS to buyer
+      * Transfer funds to seller
+      */
+     function finalizeSale(uint256 _nftID)public {
+        require(inspectionPassed[_nftID]);
+        require(approval[_nftID][buyer[_nftID]]);
+        require(approval[_nftID][seller]);
+        require(approval[_nftID][lender]);
+        require(address(this).balance >= purchasePrice[_nftID]);
+
+     }
 }
