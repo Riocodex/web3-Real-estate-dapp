@@ -16,6 +16,9 @@ contract Escrow {
     address public lender;
 
     mapping(uint256 => bool)public isListed;
+    mapping(uint256 => uint256)public purchasePrice;
+    mapping(uint256 => uint256)public escrowAmount;
+    mapping(uint256 => address)public buyer;
 
     constructor(
         address _nftAddress, 
