@@ -96,7 +96,7 @@ describe('Escrow', () => {
     })
 
     describe('Inspection', () =>{
-        it('Updates contract balance', async()=>{
+        it('Updates inspecton status', async()=>{
             const transaction = await escrow.connect(inspector).updateInspectionStatus(1,true)
             await transaction.wait()
             const result = await escrow.inspectionPassed(1)
