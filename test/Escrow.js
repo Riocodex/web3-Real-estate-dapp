@@ -145,6 +145,10 @@ describe('Escrow', () => {
             await transaction.wait()
         })
 
+        it('Updates ownership', async ()=>{
+            expect(await realEstate.ownerOf(1)).to.be.equal(buyer.address)
+        })
+
         it('Updates Balance', async() => {
             expect(await escrow.getBalance()).to.be.equal(0)
         })
