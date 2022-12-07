@@ -145,8 +145,8 @@ describe('Escrow', () => {
             await transaction.wait()
         })
 
-        it('works', async() => {
-            
+        it('Updates Balance', async() => {
+            expect(await escrow.getBalance()).to.be.equal(0)
         })
     })
 
