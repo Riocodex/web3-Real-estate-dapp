@@ -16,6 +16,7 @@ import config from './config.json';
 function App() {
 
     const [provider, setProvider] = useState(null)
+    const [escrow, setEscrow] = useState(null)
     const [account, setAccount ] = useState(null)
 
     const loadBlockchainData = async() => {
@@ -28,10 +29,12 @@ function App() {
       const realEstate = 
             new ethers.Contract( config[network.chainId].realEstate.address, RealEstate, provider)
       const totalSupply = await realEstate.totalSupply()
-      console.log(totalSupply.toString())
-
-      // config[network.chainId].realEstate.address
-      // config[network.chainId].escrow.address
+      const homes = []
+      
+      const escrow = 
+            new ethers.Contract(config[network.chainId].escrow.address, Escrow, provider)
+      setEscrow(escrow)
+      
 
   
 
